@@ -78,3 +78,27 @@ class Channel:
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         print(json.dumps(self._get_info_from_channel(), indent=2, ensure_ascii=False))
+
+    def __str__(self):
+        return f'{self.title} ({self.url})'
+
+    def __add__(self, other) -> int:
+        return int(self.subscriber_count) + int(other.subscriber_count)
+
+    def __sub__(self, other) -> int:
+        return int(self.subscriber_count) - int(other.subscriber_count)
+
+    def __gt__(self, other) -> bool:
+        return int(self.subscriber_count) > int(other.subscriber_count)
+
+    def __ge__(self, other) -> bool:
+        return int(self.subscriber_count) >= int(other.subscriber_count)
+
+    def __lt__(self, other) -> bool:
+        return int(self.subscriber_count) < int(other.subscriber_count)
+
+    def __le__(self, other) -> bool:
+        return int(self.subscriber_count) <= int(other.subscriber_count)
+
+    def __eq__(self, other) -> bool:
+        return int(self.subscriber_count) == int(other.subscriber_count)
