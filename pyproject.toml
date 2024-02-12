@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "task-13-1-2"
+version = "0.1.0"
+description = ""
+authors = ["ekaterina <sychevaee@icloud.com>"]
+readme = "README.md"
+packages = [{include = "task_13"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pytest = "^8.0.0"
+isodate = "^0.6.1"
+datetime = "^5.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
