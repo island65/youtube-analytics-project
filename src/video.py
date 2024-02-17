@@ -8,13 +8,21 @@ class Video:
     _video: dict = None
     youtube = build('youtube', 'v3', developerKey=api_key)
 
-    def __init__(self, video_id: str):
+    def __init__(self, video_id: str) -> None:
         self.video_id = video_id
-        self.video_title: str = self.video_response()['items'][0]['snippet']['title']
-        self.url: str = f"https://www.youtube.com/channel/{self.video_id}"
-        self.view_count: int = self.video_response()['items'][0]['statistics']['viewCount']
-        self.like_count: int = self.video_response()['items'][0]['statistics']['likeCount']
-        self.comment_count: int = self.video_response()['items'][0]['statistics']['commentCount']
+        try:
+            self.title: str = self.video_response()['items'][0]['snippet']['title']
+            self.url: str = f"https://www.youtube.com/channel/{self.video_id}"
+            self.view_count: int = self.video_response()['items'][0]['statistics']['viewCount']
+            self.like_count: int = self.video_response()['items'][0]['statistics']['likeCount']
+            self.comment_count: int = self.video_response()['items'][0]['statistics']['commentCount']
+        except IndexError:
+            self.title = None
+            self.url = None
+            self.view_count = None
+            self.like_count = None
+            self.comment_count = None
+
 
     def video_response(self) -> dict:
         """Если информации в словаре нет, то возвращает информацию о видеоролике"""
